@@ -17,6 +17,7 @@ int x = 0;
 int y = 0;
 int passed = 0;
 int endGame = 0;
+int lettersFound = 0;
 	
 void Game(int Key)
 {
@@ -51,6 +52,11 @@ void Game(int Key)
 				Digits[x] = Letters[LetterPosition];
 				SecretDigits[x] = '*';
 				passed = 1;
+				lettersFound = lettersFound + 1;
+				if (lettersFound == 5)
+				{
+					endGame = 2;
+				}
 			}
 		}
 		if (passed == 0)
@@ -107,6 +113,13 @@ int main()
 		{
 			cmd_LCD(1, 0);
 			escreve_LCD("GAME OVER");
+			_delay_ms(5000);
+			break;
+		}
+		if (endGame == 2)
+		{
+			cmd_LCD(1, 0);
+			escreve_LCD("VC GANHOU!");
 			_delay_ms(5000);
 			break;
 		}
